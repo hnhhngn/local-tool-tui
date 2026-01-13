@@ -39,6 +39,48 @@
   overflow: hidden; /* Prevent Main Scroll */
 }
 
+/* === DRAG & DROP STYLES === */
+.widget[draggable="true"] {
+    /* Default: No cursor if not edit mode (handled by JS logic mostly, but CSS can help) */
+    cursor: default;
+}
+
+.widget.edit-mode-active {
+    cursor: grab;
+    border: 1px dashed var(--tui-text-dim);
+    position: relative;
+}
+
+.widget.edit-mode-active::after {
+    content: "DRAG ME";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+    font-weight: bold;
+}
+
+/* Disable interaction with content when in edit mode */
+.widget.edit-mode-active > * {
+    pointer-events: none;
+}
+
+.widget.drag-over {
+    border: 2px dashed var(--tui-text-success) !important;
+    background-color: rgb(0 255 127 / 0.1);
+    transform: scale(1.02);
+}
+
+/* Header Controls */
+.ml-4 { margin-left: var(--space-4); }
+.mr-2 { margin-right: var(--space-2); }
+.cursor-pointer { cursor: pointer; }
+.hover\:text-white:hover { color: #fff; }
+.hidden { display: none; }
+
 /* Utility to center content */
 .flex-center {
   display: flex;

@@ -188,6 +188,21 @@ while ($listener.IsListening) {
             }
         }
 
+        # === LAYOUT API ===
+        elseif ($method -eq "GET" -and $url -eq "/api/layout") {
+             if (-not (Test-Path "$dataDir\layout.json")) { 
+                 [System.IO.File]::WriteAllText("$dataDir\layout.json", "{`"order`":[]}", [System.Text.Encoding]::UTF8)
+            }
+            $json = [System.IO.File]::ReadAllText("$dataDir\layout.json", [System.Text.Encoding]::UTF8)
+            Send-Response $context $json "application/json"
+        }
+        elseif ($method -eq "POST" -and $url -eq "/api/layout") {
+             $reader = New-Object System.IO.StreamReader($request.InputStream, [System.Text.Encoding]::UTF8)
+            $body = $reader.ReadToEnd()
+            [System.IO.File]::WriteAllText("$dataDir\layout.json", $body, [System.Text.Encoding]::UTF8)
+            Send-Response $context "{`"status`":`"saved`"}" "application/json"
+        }
+
     }
     catch {
         Write-Host "Error: $_" -ForegroundColor Red

@@ -7,7 +7,7 @@ import { fetchTasks, openAddTaskModal } from './modules/tasks.js';
 import { fetchLinks, openAddLinkModal } from './modules/links.js';
 import { fetchReminders, openAddReminderModal } from './modules/reminders.js';
 import { fetchAutomation, openAddAutomationModal } from './modules/automation.js';
-// import { initDragDrop } from './components/widget.js'; // Phase 9
+import { initLayout } from './modules/layout.js';
 
 console.log("🚀 Local TUI Dev Tool Started");
 console.log("🎨 Theme: Jules Google (Hybrid)");
@@ -15,6 +15,7 @@ console.log("🎨 Theme: Jules Google (Hybrid)");
 document.addEventListener('DOMContentLoaded', async () => {
     initClock();
     initWidgetButtons();
+    initLayout(); // Drag & Drop
 
     // Load Tasks
     try {
