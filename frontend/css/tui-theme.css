@@ -1,0 +1,150 @@
+/* ============================================
+   TUI-THEME.CSS - Hybrid (Jules Colors x TUI UX)
+   Local TUI Dev Tool
+   ============================================ */
+
+/* === FONTS (Manual Install Required) === */
+@font-face {
+  font-family: 'VT323';
+  src: url('../assets/fonts/VT323-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('../assets/fonts/JetBrainsMono-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* === JULES COLOR PALETTE === */
+  /* Backgrounds - Deep Space Purple */
+  --tui-bg-primary: #0d0117;      /* Main Background */
+  --tui-bg-panel: #1d0245;        /* Panel/Modal Background */
+  --tui-bg-input: #2a0a5e;        /* Input Field Background */
+  --tui-bg-hover: #3d1080;        /* Hover State */
+
+  /* Text Colors */
+  --tui-text-main: #f5f3ff;       /* Bright White-Purple */
+  --tui-text-dim: #c4b5fd;        /* Muted Purple */
+  --tui-text-keyword: #ff79c6;    /* Pink (Keywords) */
+  
+  /* Neon Accents (TUI Elements) */
+  --tui-border: #7c3aed;          /* Purple Neon Border */
+  --tui-accent-cyan: #8be9fd;     /* Cyan (Links/Info) */
+  --tui-accent-amber: #fbbf24;    /* Amber (Warnings/Code) */
+  --tui-accent-emerald: #10b981;  /* Emerald (Success) */
+  --tui-accent-rose: #ef4444;     /* Rose (Error/Delete) */
+
+  /* === TYPOGRAPHY === */
+  /* VT323 for Headers, ASCII Art, Big Numbers */
+  --font-header: 'VT323', Consolas, monospace;
+  
+  /* JetBrains Mono for Content, Code, Inputs */
+  --font-body: 'JetBrains Mono', Consolas, monospace;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: 2rem;
+
+  /* === SPACING & LAYOUT === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  
+  /* TUI Borders */
+  --border-width: 2px;
+  --border-style: solid; /* Can simulate ASCII with CSS borders too */
+
+  /* === EFFECTS === */
+  --glow-text: 0 0 5px rgba(245, 243, 255, 0.3);
+  --glow-border: 0 0 10px rgba(124, 58, 237, 0.4);
+  --transition-speed: 0.2s;
+}
+
+/* === GLOBAL RESET === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--tui-bg-primary);
+  color: var(--tui-text-main);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: hidden; /* No Global Scroll */
+  width: 100vw;
+  height: 100vh;
+}
+
+/* === UTILITIES === */
+.text-header { font-family: var(--font-header); text-shadow: var(--glow-text); }
+.text-dim { color: var(--tui-text-dim); }
+.text-amber { color: var(--tui-accent-amber); }
+.text-cyan { color: var(--tui-accent-cyan); }
+.text-emerald { color: var(--tui-accent-emerald); }
+.text-rose { color: var(--tui-accent-rose); }
+
+/* === TUI COMPONENTS === */
+/* Button - ASCII Style with Hover Glow */
+.btn {
+  background: transparent;
+  border: 1px solid var(--tui-border);
+  color: var(--tui-text-main);
+  font-family: var(--font-header);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: var(--tui-bg-hover);
+  box-shadow: var(--glow-border);
+  color: var(--tui-text-keyword);
+}
+
+/* Input - TUI Style */
+.input {
+  background: var(--tui-bg-input);
+  border: 1px solid var(--tui-border);
+  color: var(--tui-text-main);
+  font-family: var(--font-body);
+  padding: 4px 8px;
+  width: 100%;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--tui-accent-cyan);
+  box-shadow: 0 0 5px var(--tui-accent-cyan);
+}
+
+/* Scrollbar (Custom Jules Style) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--tui-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tui-bg-hover);
+  border: 1px solid var(--tui-bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tui-border);
+}

@@ -1,0 +1,41 @@
+/* ============================================
+   LAYOUT.CSS - Grid System
+   ============================================ */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  padding: var(--space-2);
+}
+
+/* Header Config */
+.tui-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--tui-bg-panel);
+  border-bottom: var(--border-width) solid var(--tui-border);
+  margin-bottom: var(--space-2);
+  height: 50px; /* Fixed Header Height */
+  flex-shrink: 0;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 Columns */
+  grid-template-rows: 1fr 1fr;    /* 2 Rows */
+  gap: var(--space-3);
+  flex-grow: 1;
+  overflow: hidden; /* Prevent Main Scroll */
+}
+
+/* Utility to center content */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,74 @@
+/* ============================================
+   MODAL.CSS - No Scroll Popups
+   ============================================ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(13, 1, 23, 0.9); /* #0d0117 with opacity */
+  backdrop-filter: blur(2px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal-box {
+  background-color: var(--tui-bg-primary);
+  border: 2px solid var(--tui-border); /* Thicker border for focus */
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+  width: 90vw;
+  height: 90vh; /* Fixed Height */
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header-bar {
+  background-color: var(--tui-bg-panel);
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid var(--tui-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-family: var(--font-header);
+  font-size: var(--text-xl);
+  color: var(--tui-text-keyword);
+}
+
+.modal-body {
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden; /* No scroll on body wrapper */
+}
+
+/* Universal 2-Column Layout for Modals */
+.col-left {
+  flex: 1;
+  padding: var(--space-4);
+  border-right: 1px solid var(--tui-border);
+  overflow-y: auto;
+}
+
+.col-right {
+  flex: 1;
+  padding: var(--space-4);
+  overflow-y: auto;
+  background-color: rgba(29, 2, 69, 0.3); /* Slightly darker */
+}

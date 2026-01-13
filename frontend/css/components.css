@@ -1,0 +1,36 @@
+/* ============================================
+   COMPONENTS.CSS - Reusable UI Elements
+   ============================================ */
+
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--tui-text-dim);
+  cursor: pointer;
+  font-family: var(--font-header);
+  font-size: var(--text-lg);
+  transition: color 0.1s;
+}
+
+.btn-icon:hover {
+  color: var(--tui-text-main);
+  text-shadow: var(--glow-text);
+}
+
+.separator {
+  margin: 0 var(--space-2);
+  color: var(--tui-text-dim);
+}
+
+/* Status Badges */
+.badge {
+  padding: 2px 6px;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+}
+
+.badge-success { color: var(--tui-accent-emerald); }
+.badge-warning { color: var(--tui-accent-amber); }
+.badge-error { color: var(--tui-accent-rose); }
+.badge-info { color: var(--tui-accent-cyan); }

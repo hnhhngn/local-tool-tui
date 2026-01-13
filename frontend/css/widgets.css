@@ -1,0 +1,90 @@
+/* ============================================
+   WIDGETS.CSS - Code Editor Style
+   ============================================ */
+
+.widget-panel {
+  background-color: var(--tui-bg-primary); /* Deep Purple Background */
+  border: 4px dotted var(--tui-border);    /* Pixelated/Dotted Border */
+  border-radius: 12px;                     /* Rounded Corners */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deep Shadow */
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.widget-panel:hover {
+  border-color: var(--tui-text-keyword);
+  box-shadow: 0 0 20px var(--tui-border);
+  transform: translateY(-2px);
+}
+
+/* Header as Code Comment */
+.widget-header {
+  background-color: transparent; /* No separate header bg */
+  border-bottom: 1px dashed var(--tui-bg-hover);
+  padding: var(--space-2) var(--space-4);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.widget-title {
+  font-family: 'JetBrains Mono', monospace; /* Use code font */
+  font-size: var(--text-sm);
+  color: var(--tui-text-dim);
+  /* Make it look like a comment */
+}
+
+.widget-title::before {
+  content: "// ";
+  color: var(--tui-text-dim);
+}
+
+.widget-content {
+  flex-grow: 1;
+  padding: 0; /* Removing padding to let gutter fit */
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+
+/* Editor Gutter (Line Numbers) */
+.editor-gutter {
+  width: 40px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid var(--tui-bg-hover);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-2);
+  color: var(--tui-text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: var(--text-xs);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.editor-body {
+  flex-grow: 1;
+  padding: var(--space-2);
+  overflow-y: auto;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--tui-text-main);
+}
+
+/* Loading State */
+.loading-pulse {
+  color: var(--tui-text-dim);
+  animation: pulse 1.5s infinite;
+  text-align: center;
+  margin-top: var(--space-4);
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}

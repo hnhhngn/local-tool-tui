@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local TUI Dev Tool</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/tui-theme.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/widgets.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+</head>
+
+<body>
+    <div id="app" class="app-container">
+        <!-- HEADER -->
+        <header class="tui-header">
+            <div class="logo">
+                <span class="text-header text-xl text-keyword">[🐙]</span>
+                <span class="text-header text-lg">LOCAL TUI DEV</span>
+            </div>
+            <div class="status-bar">
+                <span id="clock" class="text-dim">00:00:00</span>
+                <span class="separator">|</span>
+                <span class="theme-label text-cyan">[Theme: Jules]</span>
+            </div>
+        </header>
+
+        <!-- MAIN DASHBOARD (Grid Layout) -->
+        <main class="dashboard-grid">
+            <!-- Widget 1: Tasks -->
+            <div id="widget-tasks" class="widget-panel">
+                <div class="widget-header">
+                    <span class="widget-title">Tasks.js</span>
+                    <!-- Changed title style -->
+                    <div class="widget-controls">
+                        <button class="btn-icon" title="Add Task">[+]</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <!-- Gutter -->
+                    <div class="editor-gutter">
+                        <span class="text-keyword">🐙</span>
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+                    </div>
+                    <!-- Body -->
+                    <div class="editor-body" id="tasks-content">
+                        <div class="loading-pulse">// Loading Tasks...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 2: Quick Access -->
+            <div id="widget-links" class="widget-panel">
+                <div class="widget-header">
+                    <span class="widget-title">QuickAccess.json</span>
+                    <div class="widget-controls">
+                        <button class="btn-icon" title="Add Link">[+]</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="editor-gutter">
+                        <span class="text-info">@</span>
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </div>
+                    <div class="editor-body" id="links-content">
+                        <div class="loading-pulse">// Loading Links...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 3: Reminders -->
+            <div id="widget-reminders" class="widget-panel">
+                <div class="widget-header">
+                    <span class="widget-title">Reminders.log</span>
+                    <div class="widget-controls">
+                        <button class="btn-icon" title="Add Reminder">[+]</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="editor-gutter">
+                        <span class="text-amber">*</span>
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </div>
+                    <div class="editor-body" id="reminders-content">
+                        <div class="loading-pulse">// Loading Reminders...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widget 4: Automation -->
+            <div id="widget-automation" class="widget-panel">
+                <div class="widget-header">
+                    <span class="widget-title">Automation.sh</span>
+                    <div class="widget-controls">
+                        <button class="btn-icon" title="Add Preset">[+]</button>
+                    </div>
+                </div>
+                <div class="widget-content">
+                    <div class="editor-gutter">
+                        <span class="text-rose">>_</span>
+                        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                    </div>
+                    <div class="editor-body" id="automation-content">
+                        <div class="loading-pulse">// Loading Automation...</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- MODAL CONTAINER (Hidden by default) -->
+        <div id="modal-overlay" class="modal-overlay hidden">
+            <!-- Modal content injected by JS -->
+        </div>
+    </div>
+
+    <!-- Scripts (ES Modules) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
