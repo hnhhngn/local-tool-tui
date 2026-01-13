@@ -91,9 +91,20 @@ body {
 .text-header { font-family: var(--font-header); text-shadow: var(--glow-text); }
 .text-dim { color: var(--tui-text-dim); }
 .text-amber { color: var(--tui-accent-amber); }
+.text-amber-400 { color: var(--tui-accent-amber); } /* Alias for compatibility */
 .text-cyan { color: var(--tui-accent-cyan); }
 .text-emerald { color: var(--tui-accent-emerald); }
 .text-rose { color: var(--tui-accent-rose); }
+
+/* Icon sizes */
+.w-6 { width: 1.5rem; }
+.h-6 { height: 1.5rem; }
+.w-8 { width: 2rem; }
+.h-8 { height: 2rem; }
+.w-10 { width: 2.5rem; }
+.h-10 { height: 2.5rem; }
+.w-12 { width: 3rem; }
+.h-12 { height: 3rem; }
 
 /* === TUI COMPONENTS === */
 /* Button - ASCII Style with Hover Glow */

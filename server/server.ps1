@@ -12,7 +12,7 @@ $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add("http://localhost:$port/")
 $listener.Start()
 
-Write-Host "🐙 TUI Server is running on http://localhost:$port"
+Write-Host "   TUI Server is running on http://localhost:$port"
 Write-Host "   Styles: Jules Google Scheme"
 Write-Host "   Press Ctrl+C to stop."
 
