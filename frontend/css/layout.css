@@ -29,11 +29,11 @@
   gap: var(--space-2);
 }
 
-/* Dashboard Grid */
+/* Dashboard Grid (12x12) */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 Columns */
-  grid-template-rows: 1fr 1fr;    /* 2 Rows */
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
   gap: var(--space-3);
   flex-grow: 1;
   overflow: hidden; /* Prevent Main Scroll */
@@ -74,6 +74,31 @@
     transform: scale(1.02);
 }
 
+/* Resize Handle */
+.resize-handle {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    cursor: nwse-resize;
+    z-index: 20;
+    display: none;
+}
+
+.widget.edit-mode-active .resize-handle {
+    display: block;
+    pointer-events: auto;
+    background: linear-gradient(135deg, transparent 50%, var(--tui-text-dim) 50%);
+    border-bottom-right-radius: 4px;
+}
+
+.widget.edit-mode-active .resize-handle:hover {
+    background: linear-gradient(135deg, transparent 50%, var(--tui-text-highlight) 50%);
+}
+
+/* Drag over visual */
+
 /* Header Controls */
 .ml-4 { margin-left: var(--space-4); }
 .mr-2 { margin-right: var(--space-2); }
@@ -86,4 +111,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Ghost Widget (Drop Indicator) */
+.ghost-widget {
+    background-color: rgba(64, 224, 208, 0.15); /* Turquoise transparent */
+    border: 2px dashed var(--tui-text-highlight);
+    border-radius: 4px;
+    z-index: 10; /* Below focused widget (20), above normal (1) */
+    pointer-events: none;
+    transition: all 0.1s ease-out; /* Smooth snapping */
 }
