@@ -35,7 +35,6 @@ function renderControls() {
 
     const container = document.createElement('span');
     container.id = 'layout-controls';
-    container.className = 'ml-4';
     container.innerHTML = `
         <span class="separator">|</span>
         <span id="btn-edit-layout" class="text-keyword cursor-pointer hover:text-white">[EDIT LAYOUT]</span>

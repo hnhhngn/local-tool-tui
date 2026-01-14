@@ -31,9 +31,14 @@
             </div>
             <div class="status-bar">
                 <span class="separator">|</span>
-                <span class="theme-label text-cyan">[Theme: Jules]</span>
-                <span class="separator">|</span>
-                <button id="theme-toggle" class="btn-icon" title="Toggle Theme">[☀]</button>
+                <div class="theme-dropdown" id="theme-dropdown">
+                    <button class="theme-trigger" id="theme-trigger">[Theme: <span id="theme-name">Dark</span>]</button>
+                    <ul class="theme-menu hidden" id="theme-menu">
+                        <li data-theme="dark">Dark</li>
+                        <li data-theme="light">Light</li>
+                        <li data-theme="colorful">Colorful</li>
+                    </ul>
+                </div>
             </div>
         </header>
 
@@ -42,7 +47,7 @@
             <!-- Row 1 -->
             <div id="widget-tasks" class="widget-panel widget rounded-pixel-lg">
                 <div class="widget-header">
-                    <span class="widget-title">Tasks.js</span>
+                    <span class="widget-title">Tasks</span>
                     <!-- Changed title style -->
                     <div class="widget-controls">
                         <button class="btn-icon" title="Add Task">[+]</button>
@@ -65,7 +70,7 @@
             <!-- Widget 2: Quick Access -->
             <div id="widget-links" class="widget-panel widget rounded-pixel-lg">
                 <div class="widget-header">
-                    <span class="widget-title">QuickAccess.json</span>
+                    <span class="widget-title">QuickAccess</span>
                     <div class="widget-controls">
                         <button class="btn-icon" title="Add Link">[+]</button>
                     </div>
@@ -84,7 +89,7 @@
             <!-- Widget 3: Reminders -->
             <div id="widget-reminders" class="widget-panel widget rounded-pixel-lg">
                 <div class="widget-header">
-                    <span class="widget-title">Reminders.log</span>
+                    <span class="widget-title">Reminders</span>
                     <div class="widget-controls">
                         <button class="btn-icon" title="Add Reminder">[+]</button>
                     </div>
@@ -103,7 +108,7 @@
             <!-- Widget 4: Automation -->
             <div id="widget-automation" class="widget-panel widget rounded-pixel-lg">
                 <div class="widget-header">
-                    <span class="widget-title">Automation.sh</span>
+                    <span class="widget-title">Automation</span>
                     <div class="widget-controls">
                         <button class="btn-icon" title="Add Preset">[+]</button>
                     </div>

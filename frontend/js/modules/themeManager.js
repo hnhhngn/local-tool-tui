@@ -1,6 +1,6 @@
 /**
  * MODULES/THEME-MANAGER.JS
- * Multi-theme system with localStorage persistence
+ * Multi-theme system with dropdown selector
  */
 
 const THEMES = ['dark', 'light', 'colorful'];
@@ -14,7 +14,7 @@ export function initTheme() {
     const saved = localStorage.getItem(STORAGE_KEY);
     const theme = THEMES.includes(saved) ? saved : DEFAULT_THEME;
     applyTheme(theme);
-    initToggleButton();
+    initDropdown();
 }
 
 /**
@@ -28,44 +28,56 @@ export function applyTheme(theme) {
 
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(STORAGE_KEY, theme);
-    updateToggleIcon(theme);
+    updateThemeUI(theme);
     console.log(`🎨 Theme: ${theme}`);
 }
 
 /**
- * Toggle giữa các theme
+ * Cập nhật UI dropdown
  */
-export function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme') || DEFAULT_THEME;
-    const currentIndex = THEMES.indexOf(current);
-    const nextIndex = (currentIndex + 1) % THEMES.length;
-    applyTheme(THEMES[nextIndex]);
-}
-
-/**
- * Cập nhật icon của toggle button
- */
-function updateToggleIcon(theme) {
-    const btn = document.getElementById('theme-toggle');
-    if (!btn) return;
-
-    const icons = {
-        dark: { icon: '[☀]', class: 'text-amber', next: 'Light' },
-        light: { icon: '[🎨]', class: 'text-cyan', next: 'Colorful' },
-        colorful: { icon: '[☾]', class: 'text-fuchsia', next: 'Dark' }
-    };
-
-    const config = icons[theme] || icons.dark;
-    btn.innerHTML = `<span class="${config.class}">${config.icon}</span>`;
-    btn.title = `Chuyển sang ${config.next}`;
-}
-
-/**
- * Gắn sự kiện cho toggle button
- */
-function initToggleButton() {
-    const btn = document.getElementById('theme-toggle');
-    if (btn) {
-        btn.addEventListener('click', toggleTheme);
+function updateThemeUI(theme) {
+    // Cập nhật tên theme trong trigger button
+    const nameEl = document.getElementById('theme-name');
+    if (nameEl) {
+        nameEl.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
     }
+
+    // Cập nhật active state trong menu
+    const menu = document.getElementById('theme-menu');
+    if (menu) {
+        menu.querySelectorAll('li').forEach(li => {
+            li.classList.toggle('active', li.dataset.theme === theme);
+        });
+    }
+}
+
+/**
+ * Khởi tạo dropdown events
+ */
+function initDropdown() {
+    const trigger = document.getElementById('theme-trigger');
+    const menu = document.getElementById('theme-menu');
+
+    if (!trigger || !menu) return;
+
+    // Toggle menu khi click trigger
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+    });
+
+    // Chọn theme khi click menu item
+    menu.querySelectorAll('li').forEach(li => {
+        li.addEventListener('click', () => {
+            applyTheme(li.dataset.theme);
+            menu.classList.add('hidden');
+        });
+    });
+
+    // Đóng menu khi click bên ngoài
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.theme-dropdown')) {
+            menu.classList.add('hidden');
+        }
+    });
 }

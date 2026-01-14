@@ -22,7 +22,6 @@
 .widget-panel:hover {
   border-color: var(--tui-text-keyword);
   box-shadow: 0 0 20px var(--tui-border);
-  transform: translateY(-2px);
 }
 
 .widget-panel.with-pattern {
