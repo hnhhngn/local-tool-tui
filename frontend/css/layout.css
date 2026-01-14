@@ -13,7 +13,7 @@
   height: 100vh;
   width: 100vw;
   padding: var(--space-2);
-  background-color: var(--color-bg-panel);
+  background-color: var(--tui-bg-panel);
 }
 
 /* ========================================
@@ -25,12 +25,11 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--space-2) var(--space-4);
-  background-color: var(--color-bg-panel);
+  background-color: var(--tui-bg-panel);
   border-bottom: var(--border-width) solid var(--color-purple-500);
   margin-bottom: var(--space-2);
   height: 50px;
   flex-shrink: 0;
-  /* Pattern Background via Variable */
   background-image: var(--pattern-bg-header);
   background-size: 0.5em;
   background-repeat: repeat;
@@ -77,7 +76,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2rem;
-  color: oklch(94.64% 0.022 302.93 / 0.08);
+  color: color-mix(in srgb, var(--color-purple-50), transparent 92%);
   pointer-events: none;
   font-weight: bold;
   font-family: var(--font-header);
@@ -90,7 +89,11 @@
 
 .widget.drag-over {
   border: 2px dashed var(--tui-accent-emerald) !important;
-  background-color: oklch(72.3% 0.15 165 / 0.1);
+  background-color: color-mix(
+    in srgb,
+    var(--tui-accent-emerald),
+    transparent 90%
+  );
   transform: scale(1.02);
 }
 
@@ -133,12 +136,10 @@
    ======================================== */
 
 .ghost-widget {
-  background-color: oklch(78.9% 0.154 211.53 / 0.15);
+  background-color: color-mix(in srgb, var(--color-cyan-400), transparent 85%);
   border: 2px dashed var(--color-cyan-400);
   border-radius: 4px;
   z-index: 10;
   pointer-events: none;
   transition: all 0.1s var(--ease-in-out);
 }
-
-/* Note: Utilities have been moved to components.css */

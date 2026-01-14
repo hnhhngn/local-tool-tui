@@ -64,8 +64,8 @@
   --color-cyan-950: oklch(30.2% 0.056 229.695);
 
   /* --- Background Colors --- */
-  --color-bg-deep: #09051c;
-  --color-bg-panel: #1d0245;
+  --color-bg-deep: oklch(13.5% 0.05 280);
+  --color-bg-panel: oklch(18% 0.12 290);
 
   /* ========================================
      SEMANTIC THEME VARIABLES
@@ -80,14 +80,14 @@
   /* Text Colors */
   --tui-text-main: var(--color-purple-50);
   --tui-text-dim: var(--color-purple-200);
-  --tui-text-keyword: oklch(71.8% 0.202 349.761); /* Pink */
+  --tui-text-keyword: var(--color-fuchsia-300); /* Pink */
 
   /* Accent Colors */
   --tui-border: var(--color-purple-500);
   --tui-accent-cyan: var(--color-cyan-400);
   --tui-accent-amber: var(--color-amber-400);
-  --tui-accent-emerald: oklch(72.3% 0.15 165);
-  --tui-accent-rose: oklch(62.8% 0.22 22);
+  --tui-accent-emerald: var(--color-cyan-400);
+  --tui-accent-rose: var(--color-fuchsia-400);
 
   /* ========================================
      TYPOGRAPHY
@@ -121,8 +121,10 @@
   /* ========================================
      EFFECTS
      ======================================== */
-  --glow-text: 0 0 5px oklch(94.64% 0.022 302.93 / 0.3);
-  --glow-border: 0 0 10px oklch(46.36% 0.214 293.04 / 0.4);
+  --glow-text: 0 0 5px
+    color-mix(in srgb, var(--color-purple-50), transparent 70%);
+  --glow-border: 0 0 10px
+    color-mix(in srgb, var(--color-purple-500), transparent 60%);
   --transition-speed: 0.2s;
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 

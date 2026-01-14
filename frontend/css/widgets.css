@@ -13,13 +13,11 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px
+    color-mix(in srgb, var(--color-bg-deep), transparent 50%);
   position: relative;
   transition: transform 0.2s var(--ease-in-out),
     box-shadow 0.2s var(--ease-in-out), border-color 0.2s var(--ease-in-out);
-  /* Pixel Border Effect */
-  /* This matches .rounded-pixel-lg from components.css but kept here for specific component binding */
-  /* match .rounded-pixel-lg from components.css */
 }
 
 .widget-panel:hover {
@@ -28,7 +26,6 @@
   transform: translateY(-2px);
 }
 
-/* Pattern Background Option */
 .widget-panel.with-pattern {
   background-image: var(--pattern-bg-widget);
   background-size: 0.5em;
@@ -79,7 +76,7 @@
 
 .editor-gutter {
   width: 40px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: color-mix(in srgb, var(--color-bg-deep), transparent 70%);
   border-right: 1px solid var(--color-purple-800);
   display: flex;
   flex-direction: column;
@@ -106,7 +103,6 @@
 
 .loading-pulse {
   color: var(--color-purple-200);
-  /* Pulse animation defined in components.css */
   animation: pulse 1.5s infinite;
   text-align: center;
   margin-top: var(--space-4);

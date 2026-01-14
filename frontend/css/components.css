@@ -38,10 +38,10 @@ body {
 
 /* Color Text Helpers */
 .text-amber {
-  color: var(--color-amber-400);
+  color: var(--tui-accent-amber);
 }
 .text-amber-400 {
-  color: var(--color-amber-400);
+  color: var(--tui-accent-amber);
 }
 .text-cyan {
   color: var(--color-cyan-400);
@@ -79,7 +79,7 @@ body {
   background-color: var(--color-fuchsia-400);
 }
 .bg-amber-400 {
-  background-color: var(--color-amber-400);
+  background-color: var(--tui-accent-amber);
 }
 .bg-cyan-400 {
   background-color: var(--color-cyan-400);
@@ -324,7 +324,7 @@ body {
   color: var(--tui-accent-emerald);
 }
 .badge-warning {
-  color: var(--color-amber-400);
+  color: var(--tui-accent-amber);
 }
 .badge-error {
   color: var(--tui-accent-rose);
@@ -368,7 +368,7 @@ body {
 }
 
 .tag-amber {
-  background-color: var(--color-amber-400);
+  background-color: var(--tui-accent-amber);
   border-bottom-color: var(--color-amber-500);
   color: var(--color-amber-950);
 }
@@ -406,7 +406,7 @@ body {
   color: var(--color-purple-50);
 }
 .step-badge-amber {
-  background-color: var(--color-amber-400);
+  background-color: var(--tui-accent-amber);
   color: var(--color-amber-50);
 }
 .step-badge-cyan {
