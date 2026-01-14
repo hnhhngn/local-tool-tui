@@ -1,29 +1,69 @@
 /* ============================================
    WIDGETS.CSS - Code Editor Style
+   Jules Theme Edition
    ============================================ */
 
+/* ========================================
+   WIDGET PANEL (Pixel Border Style)
+   ======================================== */
+
 .widget-panel {
-  background-color: var(--tui-bg-primary); /* Deep Purple Background */
-  border: 4px dotted var(--tui-border);    /* Pixelated/Dotted Border */
-  border-radius: 12px;                     /* Rounded Corners */
+  background-color: var(--color-purple-950);
+  border: 4px solid var(--color-purple-500);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deep Shadow */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s var(--ease-in-out),
+    box-shadow 0.2s var(--ease-in-out), border-color 0.2s var(--ease-in-out);
+  /* Pixel Border Effect */
+  /* This matches .rounded-pixel-lg from components.css but kept here for specific component binding */
+  clip-path: polygon(
+    0 calc(100% - 20px),
+    10px calc(100% - 20px),
+    10px calc(100% - 10px),
+    20px calc(100% - 10px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 10px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 10px) 20px,
+    calc(100% - 10px) 10px,
+    calc(100% - 20px) 10px,
+    calc(100% - 20px) 0,
+    20px 0,
+    20px 10px,
+    10px 10px,
+    10px 20px,
+    0 20px
+  );
 }
 
 .widget-panel:hover {
-  border-color: var(--tui-text-keyword);
-  box-shadow: 0 0 20px var(--tui-border);
+  border-color: var(--color-fuchsia-400);
+  box-shadow: 0 0 20px var(--color-purple-500);
   transform: translateY(-2px);
 }
 
-/* Header as Code Comment */
+/* Pattern Background Option */
+.widget-panel.with-pattern {
+  background-image: var(--pattern-bg-widget);
+  background-size: 0.5em;
+  background-repeat: repeat;
+  background-color: var(--color-purple-950);
+}
+
+/* ========================================
+   WIDGET HEADER (Code Comment Style)
+   ======================================== */
+
 .widget-header {
-  background-color: transparent; /* No separate header bg */
-  border-bottom: 1px dashed var(--tui-bg-hover);
+  background-color: transparent;
+  border-bottom: 1px dashed var(--color-purple-700);
   padding: var(--space-2) var(--space-4);
   display: flex;
   justify-content: space-between;
@@ -32,36 +72,42 @@
 }
 
 .widget-title {
-  font-family: 'JetBrains Mono', monospace; /* Use code font */
+  font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--tui-text-dim);
-  /* Make it look like a comment */
+  color: var(--color-purple-200);
 }
 
 .widget-title::before {
   content: "// ";
-  color: var(--tui-text-dim);
+  color: var(--color-purple-300);
 }
+
+/* ========================================
+   WIDGET CONTENT
+   ======================================== */
 
 .widget-content {
   flex-grow: 1;
-  padding: 0; /* Removing padding to let gutter fit */
+  padding: 0;
   overflow: hidden;
   display: flex;
   position: relative;
 }
 
-/* Editor Gutter (Line Numbers) */
+/* ========================================
+   EDITOR GUTTER (Line Numbers)
+   ======================================== */
+
 .editor-gutter {
   width: 40px;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-right: 1px solid var(--tui-bg-hover);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-right: 1px solid var(--color-purple-800);
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: var(--space-2);
-  color: var(--tui-text-dim);
-  font-family: 'JetBrains Mono', monospace;
+  color: var(--color-purple-300);
+  font-family: var(--font-body);
   font-size: var(--text-xs);
   user-select: none;
   flex-shrink: 0;
@@ -71,20 +117,49 @@
   flex-grow: 1;
   padding: var(--space-2);
   overflow-y: auto;
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--tui-text-main);
+  font-family: var(--font-body);
+  color: var(--color-purple-50);
 }
 
-/* Loading State */
+/* ========================================
+   LOADING STATE
+   ======================================== */
+
 .loading-pulse {
-  color: var(--tui-text-dim);
+  color: var(--color-purple-200);
+  /* Pulse animation defined in components.css */
   animation: pulse 1.5s infinite;
   text-align: center;
   margin-top: var(--space-4);
 }
 
-@keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+/* ========================================
+   WIDGET VARIANTS (Color Themes)
+   ======================================== */
+
+.widget-panel.theme-fuchsia {
+  border-color: var(--color-fuchsia-500);
+}
+
+.widget-panel.theme-fuchsia:hover {
+  border-color: var(--color-fuchsia-300);
+  box-shadow: 0 0 20px var(--color-fuchsia-500);
+}
+
+.widget-panel.theme-cyan {
+  border-color: var(--color-cyan-500);
+}
+
+.widget-panel.theme-cyan:hover {
+  border-color: var(--color-cyan-300);
+  box-shadow: 0 0 20px var(--color-cyan-500);
+}
+
+.widget-panel.theme-amber {
+  border-color: var(--color-amber-500);
+}
+
+.widget-panel.theme-amber:hover {
+  border-color: var(--color-amber-300);
+  box-shadow: 0 0 20px var(--color-amber-500);
 }

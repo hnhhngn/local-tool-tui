@@ -1,36 +1,448 @@
 /* ============================================
-   COMPONENTS.CSS - Reusable UI Elements
+   COMPONENTS.CSS - Modular UI & Utilities
+   Jules Theme Edition
    ============================================ */
+
+/* ========================================
+   GLOBAL RESET & BASE
+   ======================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--tui-bg-primary);
+  color: var(--tui-text-main);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+
+/* --- Typography --- */
+.text-header {
+  font-family: var(--font-header);
+  text-shadow: var(--glow-text);
+}
+.text-dim {
+  color: var(--tui-text-dim);
+}
+
+/* Color Text Helpers */
+.text-amber {
+  color: var(--color-amber-400);
+}
+.text-amber-400 {
+  color: var(--color-amber-400);
+}
+.text-cyan {
+  color: var(--color-cyan-400);
+}
+.text-cyan-400 {
+  color: var(--color-cyan-400);
+}
+.text-emerald {
+  color: var(--tui-accent-emerald);
+}
+.text-rose {
+  color: var(--tui-accent-rose);
+}
+.text-purple {
+  color: var(--color-purple-400);
+}
+.text-fuchsia {
+  color: var(--color-fuchsia-400);
+}
+.text-keyword {
+  color: var(--tui-text-keyword);
+}
+.text-info {
+  color: var(--tui-accent-cyan);
+}
+
+/* Background Helpers */
+.bg-purple-500 {
+  background-color: var(--color-purple-500);
+}
+.bg-purple-900 {
+  background-color: var(--color-purple-900);
+}
+.bg-fuchsia-400 {
+  background-color: var(--color-fuchsia-400);
+}
+.bg-amber-400 {
+  background-color: var(--color-amber-400);
+}
+.bg-cyan-400 {
+  background-color: var(--color-cyan-400);
+}
+
+/* Pattern Helpers (Using Centralized Vars) */
+.pattern-dot-three {
+  background-image: var(--pattern-bg-dot);
+  background-size: 0.7em;
+  background-repeat: repeat;
+}
+
+.pattern-square-light {
+  background-image: var(--pattern-bg-square-light);
+  background-size: 1.4em;
+  background-repeat: repeat;
+}
+
+.pattern-tentacle {
+  background: var(--pattern-bg-tentacle) 50% repeat-x;
+}
+
+/* Sizing & Spacing Helpers */
+.w-6 {
+  width: 1.5rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.w-8 {
+  width: 2rem;
+}
+.h-8 {
+  height: 2rem;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.h-10 {
+  height: 2.5rem;
+}
+.w-12 {
+  width: 3rem;
+}
+.h-12 {
+  height: 3rem;
+}
+
+.ml-4 {
+  margin-left: var(--space-4);
+}
+.mr-2 {
+  margin-right: var(--space-2);
+}
+
+/* Layout Helpers */
+.hidden {
+  display: none !important;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ========================================
+   SHARED VISUAL EFFECTS
+   ======================================== */
+
+/* Animations */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Transitions */
+.transition {
+  transition-property: color, background-color, border-color, opacity,
+    box-shadow, transform;
+  transition-timing-function: var(--ease-in-out);
+  transition-duration: var(--transition-speed);
+}
+.transition-colors {
+  transition-property: color, background-color, border-color;
+  transition-timing-function: var(--ease-in-out);
+  transition-duration: var(--transition-speed);
+}
+.duration-200 {
+  transition-duration: 0.2s;
+}
+.duration-300 {
+  transition-duration: 0.3s;
+}
+.duration-500 {
+  transition-duration: 0.5s;
+}
+
+/* Scrollbars (Custom Jules Style) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--tui-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--tui-bg-hover);
+  border: 1px solid var(--tui-bg-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--tui-border);
+}
+
+/* Pixel Borders (Clip Params) */
+.rounded-pixel-lg {
+  clip-path: polygon(
+    0 calc(100% - 20px),
+    10px calc(100% - 20px),
+    10px calc(100% - 10px),
+    20px calc(100% - 10px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 10px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 10px) 20px,
+    calc(100% - 10px) 10px,
+    calc(100% - 20px) 10px,
+    calc(100% - 20px) 0,
+    20px 0,
+    20px 10px,
+    10px 10px,
+    10px 20px,
+    0 20px
+  );
+}
+
+.rounded-pixel-sm {
+  clip-path: polygon(
+    0 calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px 100%,
+    calc(100% - 10px) 100%,
+    calc(100% - 10px) calc(100% - 10px),
+    100% calc(100% - 10px),
+    100% 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 0,
+    10px 0,
+    10px 10px,
+    0 10px
+  );
+}
+
+/* ========================================
+   BASE COMPONENTS
+   ======================================== */
+
+/* Buttons */
+.btn {
+  background: transparent;
+  border: 1px solid var(--tui-border);
+  color: var(--tui-text-main);
+  font-family: var(--font-header);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: all var(--transition-speed) var(--ease-in-out);
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: var(--tui-bg-hover);
+  box-shadow: var(--glow-border);
+  color: var(--tui-text-keyword);
+}
 
 .btn-icon {
   background: none;
   border: none;
-  color: var(--tui-text-dim);
+  color: var(--color-purple-200);
   cursor: pointer;
   font-family: var(--font-header);
   font-size: var(--text-lg);
-  transition: color 0.1s;
+  transition: color 0.2s var(--ease-in-out), text-shadow 0.2s;
 }
 
 .btn-icon:hover {
-  color: var(--tui-text-main);
+  color: var(--color-purple-50);
   text-shadow: var(--glow-text);
 }
 
-.separator {
-  margin: 0 var(--space-2);
-  color: var(--tui-text-dim);
+/* Inputs */
+.input {
+  background: var(--tui-bg-input);
+  border: 1px solid var(--tui-border);
+  color: var(--tui-text-main);
+  font-family: var(--font-body);
+  padding: 4px 8px;
+  width: 100%;
+  transition: border-color var(--transition-speed),
+    box-shadow var(--transition-speed);
 }
 
-/* Status Badges */
+.input:focus {
+  outline: none;
+  border-color: var(--color-cyan-400);
+  box-shadow: 0 0 5px var(--color-cyan-400);
+}
+
+/* Separator */
+.separator {
+  margin: 0 var(--space-2);
+  color: var(--color-purple-200);
+}
+
+/* ========================================
+   UI MODULES (Badges, Tags, Cards)
+   ======================================== */
+
+/* Badges */
 .badge {
   padding: 2px 6px;
   font-size: var(--text-xs);
   text-transform: uppercase;
   border: 1px solid currentColor;
+  transition: all 0.2s var(--ease-in-out);
+}
+.badge-success {
+  color: var(--tui-accent-emerald);
+}
+.badge-warning {
+  color: var(--color-amber-400);
+}
+.badge-error {
+  color: var(--tui-accent-rose);
+}
+.badge-info {
+  color: var(--color-cyan-400);
 }
 
-.badge-success { color: var(--tui-accent-emerald); }
-.badge-warning { color: var(--tui-accent-amber); }
-.badge-error { color: var(--tui-accent-rose); }
-.badge-info { color: var(--tui-accent-cyan); }
+/* Tags */
+.tag {
+  display: inline-block;
+  font-size: var(--text-sm);
+  font-weight: bold;
+  font-family: var(--font-body);
+  padding: 4px 10px;
+  margin: 4px 8px 4px 0;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  transition: all 0.2s var(--ease-in-out);
+}
+.tag:hover {
+  transform: translateY(-1px);
+}
+
+.tag-fuchsia {
+  background-color: var(--color-fuchsia-400);
+  border-bottom-color: var(--color-fuchsia-600);
+  color: var(--color-fuchsia-950);
+}
+.tag-fuchsia:hover {
+  background-color: var(--color-fuchsia-300);
+}
+
+.tag-cyan {
+  background-color: var(--color-cyan-400);
+  border-bottom-color: var(--color-cyan-500);
+  color: var(--color-cyan-950);
+}
+.tag-cyan:hover {
+  background-color: var(--color-cyan-300);
+}
+
+.tag-amber {
+  background-color: var(--color-amber-400);
+  border-bottom-color: var(--color-amber-500);
+  color: var(--color-amber-950);
+}
+.tag-amber:hover {
+  background-color: var(--color-amber-300);
+}
+
+.tag-purple {
+  background-color: var(--color-purple-400);
+  border-bottom-color: var(--color-purple-500);
+  color: var(--color-purple-950);
+}
+.tag-purple:hover {
+  background-color: var(--color-purple-300);
+}
+
+/* Step Badges (Pixel Style) */
+.step-badge {
+  display: inline-block;
+  padding: 16px;
+  font-size: var(--text-lg);
+  font-weight: bold;
+  font-family: var(--font-header);
+  margin-right: 16px;
+  text-align: center;
+  min-width: 48px;
+  transition: transform 0.2s var(--ease-in-out);
+  /* Reuse clip-path utility if possible, but keeping inline for specificity if needed, 
+     but actually it matches .rounded-pixel-sm logic. Let's keep explicit here or mixin.
+     Using the explicit polygon for now to ensure SAFETY during refactor. */
+  clip-path: polygon(
+    0 calc(100% - 10px),
+    10px calc(100% - 10px),
+    10px 100%,
+    calc(100% - 10px) 100%,
+    calc(100% - 10px) calc(100% - 10px),
+    100% calc(100% - 10px),
+    100% 10px,
+    calc(100% - 10px) 10px,
+    calc(100% - 10px) 0,
+    10px 0,
+    10px 10px,
+    0 10px
+  );
+}
+.step-badge:hover {
+  transform: scale(1.05);
+}
+
+.step-badge-purple {
+  background-color: var(--color-purple-400);
+  color: var(--color-purple-50);
+}
+.step-badge-amber {
+  background-color: var(--color-amber-400);
+  color: var(--color-amber-50);
+}
+.step-badge-cyan {
+  background-color: var(--color-cyan-400);
+  color: var(--color-cyan-50);
+}
+.step-badge-fuchsia {
+  background-color: var(--color-fuchsia-400);
+  color: var(--color-fuchsia-50);
+}
+
+/* Card Styles */
+.card-pixel {
+  background-color: var(--color-purple-900);
+  border: 2px solid var(--color-purple-500);
+  padding: var(--space-4);
+  transition: all 0.2s var(--ease-in-out);
+}
+.card-pixel:hover {
+  border-color: var(--color-purple-400);
+  box-shadow: var(--glow-border);
+}

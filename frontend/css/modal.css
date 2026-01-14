@@ -1,6 +1,11 @@
 /* ============================================
    MODAL.CSS - No Scroll Popups
+   Jules Theme Edition
    ============================================ */
+
+/* ========================================
+   MODAL OVERLAY
+   ======================================== */
 
 .modal-overlay {
   position: fixed;
@@ -8,39 +13,99 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(13, 1, 23, 0.9); /* #0d0117 with opacity */
-  backdrop-filter: blur(2px);
+  background-color: oklch(13.65% 0.037 300.65 / 0.9);
   z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.hidden {
-  display: none !important;
-}
+/* Note: .hidden is now in components.css */
+
+/* ========================================
+   MODAL BOX (with Pattern Border)
+   ======================================== */
 
 .modal-box {
-  background-color: var(--tui-bg-primary);
-  border: 2px solid var(--tui-border); /* Thicker border for focus */
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
+  position: relative;
   width: 90vw;
-  height: 90vh; /* Fixed Height */
+  height: 90vh;
   max-width: 1400px;
   display: flex;
   flex-direction: column;
-  animation: modalSlideIn 0.3s ease-out;
+  animation: modalSlideIn 0.3s var(--ease-in-out);
+  will-change: transform, opacity;
+  /* Pattern Border Background */
+  background-color: var(--color-bg-panel);
+  background-image: var(--pattern-border-modal-purple);
+  background-size: 1.5em;
+  background-repeat: repeat;
+  padding: 24px; /* Pattern border width */
+  box-shadow: 0 0 30px oklch(46.36% 0.214 293.04 / 0.3);
+  /* Clip Path Pixel Border */
+  /* Matches .rounded-pixel-lg logic */
+  clip-path: polygon(
+    0 calc(100% - 20px),
+    10px calc(100% - 20px),
+    10px calc(100% - 10px),
+    20px calc(100% - 10px),
+    20px 100%,
+    calc(100% - 20px) 100%,
+    calc(100% - 20px) calc(100% - 10px),
+    calc(100% - 10px) calc(100% - 10px),
+    calc(100% - 10px) calc(100% - 20px),
+    100% calc(100% - 20px),
+    100% 20px,
+    calc(100% - 10px) 20px,
+    calc(100% - 10px) 10px,
+    calc(100% - 20px) 10px,
+    calc(100% - 20px) 0,
+    20px 0,
+    20px 10px,
+    10px 10px,
+    10px 20px,
+    0 20px
+  );
+}
+
+/* Inner content area with solid background */
+.modal-box::after {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  background-color: var(--color-purple-950);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Ensure header and body are above the overlay */
+.modal-box > * {
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes modalSlideIn {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
+/* ========================================
+   MODAL HEADER
+   ======================================== */
+
 .modal-header-bar {
-  background-color: var(--tui-bg-panel);
+  background-color: var(--color-purple-950);
   padding: var(--space-2) var(--space-4);
-  border-bottom: 1px solid var(--tui-border);
+  border-bottom: 1px solid var(--color-purple-600);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,25 +115,51 @@
   font-family: var(--font-header);
   font-size: var(--text-xl);
   color: var(--tui-text-keyword);
+  text-shadow: var(--glow-text);
 }
+
+/* ========================================
+   MODAL BODY
+   ======================================== */
 
 .modal-body {
   flex-grow: 1;
   display: flex;
-  overflow: hidden; /* No scroll on body wrapper */
+  overflow: hidden;
+  background-color: var(--color-purple-950);
 }
 
 /* Universal 2-Column Layout for Modals */
 .col-left {
   flex: 1;
   padding: var(--space-4);
-  border-right: 1px solid var(--tui-border);
+  border-right: 1px solid var(--color-purple-700);
   overflow-y: auto;
+  background-color: var(--color-purple-950);
 }
 
 .col-right {
   flex: 1;
   padding: var(--space-4);
   overflow-y: auto;
-  background-color: rgba(29, 2, 69, 0.3); /* Slightly darker */
+  background-color: oklch(17.08% 0.058 297.53 / 0.5);
+}
+
+/* ========================================
+   MODAL VARIANTS
+   ======================================== */
+
+.modal-box.theme-fuchsia {
+  background-image: var(--pattern-border-modal-fuchsia);
+  box-shadow: 0 0 30px oklch(58.3% 0.231 349.13 / 0.3);
+}
+
+.modal-box.theme-cyan {
+  background-image: var(--pattern-border-modal-cyan);
+  box-shadow: 0 0 30px oklch(71.5% 0.143 215.221 / 0.3);
+}
+
+.modal-box.theme-amber {
+  background-image: var(--pattern-border-modal-amber);
+  box-shadow: 0 0 30px oklch(76.9% 0.188 70.08 / 0.3);
 }

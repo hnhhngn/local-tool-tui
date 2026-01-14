@@ -1,6 +1,11 @@
 /* ============================================
    LAYOUT.CSS - Grid System
+   Jules Theme Edition
    ============================================ */
+
+/* ========================================
+   APP CONTAINER
+   ======================================== */
 
 .app-container {
   display: flex;
@@ -8,19 +13,28 @@
   height: 100vh;
   width: 100vw;
   padding: var(--space-2);
+  background-color: var(--color-bg-panel);
 }
 
-/* Header Config */
+/* ========================================
+   HEADER (Pattern Background)
+   ======================================== */
+
 .tui-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--space-2) var(--space-4);
-  background-color: var(--tui-bg-panel);
-  border-bottom: var(--border-width) solid var(--tui-border);
+  background-color: var(--color-bg-panel);
+  border-bottom: var(--border-width) solid var(--color-purple-500);
   margin-bottom: var(--space-2);
-  height: 50px; /* Fixed Header Height */
+  height: 50px;
   flex-shrink: 0;
+  /* Pattern Background via Variable */
+  background-image: var(--pattern-bg-header);
+  background-size: 0.5em;
+  background-repeat: repeat;
+  position: relative;
 }
 
 .logo {
@@ -29,96 +43,102 @@
   gap: var(--space-2);
 }
 
-/* Dashboard Grid (12x12) */
+/* ========================================
+   DASHBOARD GRID (12x12)
+   ======================================== */
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
   gap: var(--space-3);
   flex-grow: 1;
-  overflow: hidden; /* Prevent Main Scroll */
+  overflow: hidden;
 }
 
-/* === DRAG & DROP STYLES === */
+/* ========================================
+   DRAG & DROP STYLES
+   ======================================== */
+
 .widget[draggable="true"] {
-    /* Default: No cursor if not edit mode (handled by JS logic mostly, but CSS can help) */
-    cursor: default;
+  cursor: default;
 }
 
 .widget.edit-mode-active {
-    cursor: grab;
-    border: 1px dashed var(--tui-text-dim);
-    position: relative;
+  cursor: grab;
+  border: 2px dashed var(--color-purple-300) !important;
+  position: relative;
 }
 
 .widget.edit-mode-active::after {
-    content: "DRAG ME";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 2rem;
-    color: rgba(255, 255, 255, 0.05);
-    pointer-events: none;
-    font-weight: bold;
+  content: "DRAG ME";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: oklch(94.64% 0.022 302.93 / 0.08);
+  pointer-events: none;
+  font-weight: bold;
+  font-family: var(--font-header);
 }
 
 /* Disable interaction with content when in edit mode */
 .widget.edit-mode-active > * {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .widget.drag-over {
-    border: 2px dashed var(--tui-text-success) !important;
-    background-color: rgb(0 255 127 / 0.1);
-    transform: scale(1.02);
+  border: 2px dashed var(--tui-accent-emerald) !important;
+  background-color: oklch(72.3% 0.15 165 / 0.1);
+  transform: scale(1.02);
 }
 
-/* Resize Handle */
+/* ========================================
+   RESIZE HANDLE
+   ======================================== */
+
 .resize-handle {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    width: 16px;
-    height: 16px;
-    cursor: nwse-resize;
-    z-index: 20;
-    display: none;
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 16px;
+  height: 16px;
+  cursor: nwse-resize;
+  z-index: 20;
+  display: none;
 }
 
 .widget.edit-mode-active .resize-handle {
-    display: block;
-    pointer-events: auto;
-    background: linear-gradient(135deg, transparent 50%, var(--tui-text-dim) 50%);
-    border-bottom-right-radius: 4px;
+  display: block;
+  pointer-events: auto;
+  background: linear-gradient(
+    135deg,
+    transparent 50%,
+    var(--color-purple-300) 50%
+  );
+  border-bottom-right-radius: 4px;
 }
 
 .widget.edit-mode-active .resize-handle:hover {
-    background: linear-gradient(135deg, transparent 50%, var(--tui-text-highlight) 50%);
+  background: linear-gradient(
+    135deg,
+    transparent 50%,
+    var(--color-fuchsia-400) 50%
+  );
 }
 
-/* Drag over visual */
+/* ========================================
+   GHOST WIDGET (Drop Indicator)
+   ======================================== */
 
-/* Header Controls */
-.ml-4 { margin-left: var(--space-4); }
-.mr-2 { margin-right: var(--space-2); }
-.cursor-pointer { cursor: pointer; }
-.hover\:text-white:hover { color: #fff; }
-.hidden { display: none; }
-
-/* Utility to center content */
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Ghost Widget (Drop Indicator) */
 .ghost-widget {
-    background-color: rgba(64, 224, 208, 0.15); /* Turquoise transparent */
-    border: 2px dashed var(--tui-text-highlight);
-    border-radius: 4px;
-    z-index: 10; /* Below focused widget (20), above normal (1) */
-    pointer-events: none;
-    transition: all 0.1s ease-out; /* Smooth snapping */
+  background-color: oklch(78.9% 0.154 211.53 / 0.15);
+  border: 2px dashed var(--color-cyan-400);
+  border-radius: 4px;
+  z-index: 10;
+  pointer-events: none;
+  transition: all 0.1s var(--ease-in-out);
 }
+
+/* Note: Utilities have been moved to components.css */

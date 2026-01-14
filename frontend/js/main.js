@@ -13,7 +13,6 @@ console.log("🚀 Local TUI Dev Tool Started");
 console.log("🎨 Theme: Jules Google (Hybrid)");
 
 document.addEventListener('DOMContentLoaded', async () => {
-    initClock();
     initWidgetButtons();
     initLayout(); // Drag & Drop
 
@@ -53,18 +52,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('automation-content').innerHTML = `<div class="text-rose">// Error: ${e.message}</div>`;
     }
 });
-
-function initClock() {
-    const clockEl = document.getElementById('clock');
-
-    function update() {
-        const now = new Date();
-        clockEl.textContent = now.toLocaleTimeString('vi-VN', { hour12: false });
-    }
-
-    update();
-    setInterval(update, 1000);
-}
 
 function initWidgetButtons() {
     // Tasks Widget [+] button
