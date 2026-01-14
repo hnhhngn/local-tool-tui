@@ -8,11 +8,13 @@ import { fetchLinks, openAddLinkModal } from './modules/links.js';
 import { fetchReminders, openAddReminderModal } from './modules/reminders.js';
 import { fetchAutomation, openAddAutomationModal } from './modules/automation.js';
 import { initLayout } from './modules/layout.js';
+import { initTheme } from './modules/themeManager.js';
 
 console.log("🚀 Local TUI Dev Tool Started");
 console.log("🎨 Theme: Jules Google (Hybrid)");
 
 document.addEventListener('DOMContentLoaded', async () => {
+    initTheme(); // Multi-theme system
     initWidgetButtons();
     initLayout(); // Drag & Drop
 

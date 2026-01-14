@@ -63,17 +63,13 @@
   --color-cyan-500: oklch(71.5% 0.143 215.221);
   --color-cyan-950: oklch(30.2% 0.056 229.695);
 
-  /* --- Background Colors --- */
-  --color-bg-deep: oklch(13.5% 0.05 280);
-  --color-bg-panel: oklch(18% 0.12 290);
-
   /* ========================================
      SEMANTIC THEME VARIABLES
      ======================================== */
 
   /* Backgrounds */
   --tui-bg-primary: var(--color-purple-950);
-  --tui-bg-panel: var(--color-bg-panel);
+  --tui-bg-panel: var(--color-purple-900);
   --tui-bg-input: var(--color-purple-900);
   --tui-bg-hover: var(--color-purple-800);
 
@@ -158,4 +154,80 @@
 
   /* Pattern: Modal Border Amber */
   --pattern-border-modal-amber: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.78 22.86"><path fill="%23f59e0b" d="M1.76,4.02H0.61V2.87h1.15V4.02z M1.76,8.58H0.61V7.44h1.15V8.58z M1.76,13.16H0.61v-1.15h1.15V13.16z M1.76,17.73H0.61v-1.14h1.15V17.73z M1.76,22.3H0.61v-1.15h1.15V22.3z M4.03,1.73H2.88V0.6h1.15V1.73z M4.03,6.31H2.88V5.16h1.15V6.31z M4.03,10.88H2.88V9.73h1.15V10.88z M4.03,15.44H2.88v-1.15h1.15V15.44z M4.03,20.01H2.88v-1.14h1.15V20.01z M6.32,4.02H5.18V2.87h1.14V4.02z M6.32,8.58H5.18V7.44h1.14V8.58z M6.32,13.16H5.18v-1.15h1.14V13.16z M6.32,17.73H5.18v-1.14h1.14V17.73z M6.32,22.3H5.18v-1.15h1.14V22.3z M8.6,1.73H7.47V0.6H8.6V1.73z M8.6,6.31H7.47V5.16H8.6V6.31z M8.6,10.88H7.47V9.73H8.6V10.88z M8.6,15.44H7.47v-1.15H8.6V15.44z M8.6,20.01H7.47v-1.14H8.6V20.01z M10.89,4.02H9.74V2.87h1.15V4.02z M10.89,8.58H9.74V7.44h1.15V8.58z M10.89,13.16H9.74v-1.15h1.15V13.16z M10.89,17.73H9.74v-1.14h1.15V17.73z M10.89,22.3H9.74v-1.15h1.15V22.3z M13.18,1.73h-1.15V0.6h1.15V1.73z M13.18,6.31h-1.15V5.16h1.15V6.31z M13.18,10.88h-1.15V9.73h1.15V10.88z M13.18,15.44h-1.15v-1.15h1.15V15.44z M13.18,20.01h-1.15v-1.14h1.15V20.01z"/></svg>');
+}
+
+/* ============================================
+   LIGHT THEME
+   Override semantic variables for light mode
+   ============================================ */
+
+[data-theme="light"] {
+  /* Backgrounds - đảo ngược từ tối sang sáng */
+  --tui-bg-primary: var(--color-purple-50);
+  --tui-bg-panel: var(--color-purple-100);
+  --tui-bg-input: var(--color-purple-200);
+  --tui-bg-hover: var(--color-purple-300);
+
+  /* Text Colors - đảo ngược từ sáng sang tối */
+  --tui-text-main: var(--color-purple-900);
+  --tui-text-dim: var(--color-purple-700);
+  --tui-text-keyword: var(--color-fuchsia-600);
+
+  /* Border - đậm hơn cho contrast */
+  --tui-border: var(--color-purple-400);
+
+  /* Effects - điều chỉnh cho nền sáng */
+  --glow-text: 0 0 5px
+    color-mix(in srgb, var(--color-purple-500), transparent 85%);
+  --glow-border: 0 0 10px
+    color-mix(in srgb, var(--color-purple-400), transparent 75%);
+
+  /* Pattern: Dot Three (Light version) */
+  --pattern-bg-dot: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.68 30.68"><rect fill="%23e9d5ff" x="11.58" y="11.48" width="7.72" height="7.72"/><rect fill="%23e9d5ff" x="3.86" y="3.76" width="7.72" height="7.72"/><rect fill="%23e9d5ff" x="19.29" y="19.2" width="7.72" height="7.72"/></svg>');
+
+  /* Pattern: Header (Light version) */
+  --pattern-bg-header: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.68 30.68"><rect fill="%23d8b4fe" x="11.58" y="11.48" width="7.72" height="7.72"/><rect fill="%23d8b4fe" x="3.86" y="3.76" width="7.72" height="7.72"/><rect fill="%23d8b4fe" x="19.29" y="19.2" width="7.72" height="7.72"/></svg>');
+
+  /* Pattern: Widget Panel (Light version) */
+  --pattern-bg-widget: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.68 30.68"><rect fill="%23f3e8ff" x="11.58" y="11.48" width="7.72" height="7.72"/><rect fill="%23f3e8ff" x="3.86" y="3.76" width="7.72" height="7.72"/><rect fill="%23f3e8ff" x="19.29" y="19.2" width="7.72" height="7.72"/></svg>');
+}
+
+/* ============================================
+   COLORFUL THEME
+   Vibrant multi-color experience
+   ============================================ */
+
+[data-theme="colorful"] {
+  /* Backgrounds - Cyan tối làm nền */
+  --tui-bg-primary: var(--color-cyan-950);
+  --tui-bg-panel: var(--color-purple-900);
+  --tui-bg-input: var(--color-fuchsia-800);
+  --tui-bg-hover: var(--color-amber-950);
+
+  /* Text Colors - Amber/Cyan cho contrast */
+  --tui-text-main: var(--color-amber-200);
+  --tui-text-dim: var(--color-cyan-300);
+  --tui-text-keyword: var(--color-fuchsia-300);
+
+  /* Border - Gradient rainbow feel */
+  --tui-border: var(--color-cyan-400);
+
+  /* Accents - Đa sắc */
+  --tui-accent-cyan: var(--color-fuchsia-400);
+  --tui-accent-amber: var(--color-cyan-400);
+  --tui-accent-emerald: var(--color-amber-400);
+  --tui-accent-rose: var(--color-purple-400);
+
+  /* Effects */
+  --glow-text: 0 0 8px
+    color-mix(in srgb, var(--color-amber-400), transparent 60%);
+  --glow-border: 0 0 15px
+    color-mix(in srgb, var(--color-cyan-400), transparent 50%);
+
+  /* Pattern: Colorful dots */
+  --pattern-bg-dot: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.68 30.68"><rect fill="%2306b6d4" x="11.58" y="11.48" width="7.72" height="7.72"/><rect fill="%23f59e0b" x="3.86" y="3.76" width="7.72" height="7.72"/><rect fill="%23c026d3" x="19.29" y="19.2" width="7.72" height="7.72"/></svg>');
+
+  --pattern-bg-header: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.68 30.68"><rect fill="%230891b2" x="11.58" y="11.48" width="7.72" height="7.72"/><rect fill="%23d97706" x="3.86" y="3.76" width="7.72" height="7.72"/><rect fill="%23a21caf" x="19.29" y="19.2" width="7.72" height="7.72"/></svg>');
+
+  --pattern-bg-widget: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.68 30.68"><rect fill="%23164e63" x="11.58" y="11.48" width="7.72" height="7.72"/><rect fill="%2378350f" x="3.86" y="3.76" width="7.72" height="7.72"/><rect fill="%2386198f" x="19.29" y="19.2" width="7.72" height="7.72"/></svg>');
 }
