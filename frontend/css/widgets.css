@@ -19,28 +19,7 @@
     box-shadow 0.2s var(--ease-in-out), border-color 0.2s var(--ease-in-out);
   /* Pixel Border Effect */
   /* This matches .rounded-pixel-lg from components.css but kept here for specific component binding */
-  clip-path: polygon(
-    0 calc(100% - 20px),
-    10px calc(100% - 20px),
-    10px calc(100% - 10px),
-    20px calc(100% - 10px),
-    20px 100%,
-    calc(100% - 20px) 100%,
-    calc(100% - 20px) calc(100% - 10px),
-    calc(100% - 10px) calc(100% - 10px),
-    calc(100% - 10px) calc(100% - 20px),
-    100% calc(100% - 20px),
-    100% 20px,
-    calc(100% - 10px) 20px,
-    calc(100% - 10px) 10px,
-    calc(100% - 20px) 10px,
-    calc(100% - 20px) 0,
-    20px 0,
-    20px 10px,
-    10px 10px,
-    10px 20px,
-    0 20px
-  );
+  /* match .rounded-pixel-lg from components.css */
 }
 
 .widget-panel:hover {

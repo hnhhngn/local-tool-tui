@@ -396,23 +396,6 @@ body {
   text-align: center;
   min-width: 48px;
   transition: transform 0.2s var(--ease-in-out);
-  /* Reuse clip-path utility if possible, but keeping inline for specificity if needed, 
-     but actually it matches .rounded-pixel-sm logic. Let's keep explicit here or mixin.
-     Using the explicit polygon for now to ensure SAFETY during refactor. */
-  clip-path: polygon(
-    0 calc(100% - 10px),
-    10px calc(100% - 10px),
-    10px 100%,
-    calc(100% - 10px) 100%,
-    calc(100% - 10px) calc(100% - 10px),
-    100% calc(100% - 10px),
-    100% 10px,
-    calc(100% - 10px) 10px,
-    calc(100% - 10px) 0,
-    10px 0,
-    10px 10px,
-    0 10px
-  );
 }
 .step-badge:hover {
   transform: scale(1.05);

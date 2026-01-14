@@ -44,28 +44,7 @@
   box-shadow: 0 0 30px oklch(46.36% 0.214 293.04 / 0.3);
   /* Clip Path Pixel Border */
   /* Matches .rounded-pixel-lg logic */
-  clip-path: polygon(
-    0 calc(100% - 20px),
-    10px calc(100% - 20px),
-    10px calc(100% - 10px),
-    20px calc(100% - 10px),
-    20px 100%,
-    calc(100% - 20px) 100%,
-    calc(100% - 20px) calc(100% - 10px),
-    calc(100% - 10px) calc(100% - 10px),
-    calc(100% - 10px) calc(100% - 20px),
-    100% calc(100% - 20px),
-    100% 20px,
-    calc(100% - 10px) 20px,
-    calc(100% - 10px) 10px,
-    calc(100% - 20px) 10px,
-    calc(100% - 20px) 0,
-    20px 0,
-    20px 10px,
-    10px 10px,
-    10px 20px,
-    0 20px
-  );
+  /* Clip Path removed - using .rounded-pixel-lg utility */
 }
 
 /* Inner content area with solid background */
