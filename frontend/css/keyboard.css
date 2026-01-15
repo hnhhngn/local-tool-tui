@@ -91,6 +91,59 @@
   flex: 1;
   overflow-y: auto;
   padding: var(--space-2, 0.5rem) 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.tui-kb-palette-results::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Scroll Indicator Container */
+.tui-kb-palette-body {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Allow flex child to shrink */
+}
+
+/* Scroll Indicators */
+.tui-kb-scroll-indicator {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  pointer-events: none;
+  width: 48px;
+  height: 48px;
+  background-image: var(--icon-bullet-arrow);
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: tui-kb-blink 1s ease-in-out infinite;
+}
+
+.tui-kb-scroll-indicator--top {
+  top: -108px;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.tui-kb-scroll-indicator--bottom {
+  bottom: -44px;
+}
+
+.tui-kb-scroll-indicator.hidden {
+  display: none;
+}
+
+@keyframes tui-kb-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
 }
 
 .tui-kb-palette-item {

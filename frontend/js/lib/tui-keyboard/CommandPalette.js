@@ -14,7 +14,7 @@ class CommandPalette {
         this.container = null;
         this.config = {
             containerSelector: '#tui-kb-palette',
-            maxResults: 10,
+            maxResults: 100,
             placeholder: 'Type a command...'
         };
     }
@@ -175,8 +175,12 @@ class CommandPalette {
             autocomplete="off"
           />
         </div>
-        <div class="tui-kb-palette-results">
-          ${this._renderResults()}
+        <div class="tui-kb-palette-body">
+          <div class="tui-kb-scroll-indicator tui-kb-scroll-indicator--top hidden"></div>
+          <div class="tui-kb-palette-results">
+            ${this._renderResults()}
+          </div>
+          <div class="tui-kb-scroll-indicator tui-kb-scroll-indicator--bottom hidden"></div>
         </div>
       </div>
     `;
@@ -186,6 +190,10 @@ class CommandPalette {
         input.addEventListener('input', (e) => this._onInput(e.target.value));
         input.addEventListener('keydown', (e) => this._onKeyDown(e));
 
+        // Attach scroll handler for indicators
+        const results = this.container.querySelector('.tui-kb-palette-results');
+        results.addEventListener('scroll', () => this._updateScrollIndicators());
+
         // Attach click handlers to results
         this.container.querySelectorAll('.tui-kb-palette-item').forEach((item, idx) => {
             item.addEventListener('click', () => {
@@ -193,6 +201,9 @@ class CommandPalette {
                 this.executeSelected();
             });
         });
+
+        // Initial check for scroll indicators
+        requestAnimationFrame(() => this._updateScrollIndicators());
     }
 
     _renderResults() {
@@ -274,12 +285,48 @@ class CommandPalette {
             results.innerHTML = this._renderResults();
 
             // Re-attach click handlers
-            this.container.querySelectorAll('.tui-kb-palette-item').forEach((item, idx) => {
+            const items = this.container.querySelectorAll('.tui-kb-palette-item');
+            items.forEach((item, idx) => {
                 item.addEventListener('click', () => {
                     this.selectedIndex = idx;
                     this.executeSelected();
                 });
             });
+
+            // Ensure selected item is visible
+            const selectedItem = items[this.selectedIndex];
+            if (selectedItem) {
+                selectedItem.scrollIntoView({ block: 'nearest' });
+            }
+
+            // Update scroll indicators after content change
+            requestAnimationFrame(() => this._updateScrollIndicators());
+        }
+    }
+
+    _updateScrollIndicators() {
+        const results = this.container.querySelector('.tui-kb-palette-results');
+        const topIndicator = this.container.querySelector('.tui-kb-scroll-indicator--top');
+        const bottomIndicator = this.container.querySelector('.tui-kb-scroll-indicator--bottom');
+
+        if (!results || !topIndicator || !bottomIndicator) return;
+
+        const { scrollTop, scrollHeight, clientHeight } = results;
+        const canScrollUp = scrollTop > 0;
+        const canScrollDown = scrollTop + clientHeight < scrollHeight - 1; // -1 for rounding
+
+        // Toggle top indicator
+        if (canScrollUp) {
+            topIndicator.classList.remove('hidden');
+        } else {
+            topIndicator.classList.add('hidden');
+        }
+
+        // Toggle bottom indicator
+        if (canScrollDown) {
+            bottomIndicator.classList.remove('hidden');
+        } else {
+            bottomIndicator.classList.add('hidden');
         }
     }
 }
