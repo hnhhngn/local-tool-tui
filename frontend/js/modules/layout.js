@@ -50,20 +50,20 @@ function renderControls() {
     document.getElementById('btn-cancel-layout').addEventListener('click', cancelLayout);
 }
 
-function toggleEditMode() {
+export function toggleEditMode() {
     isEditMode = true;
     originalLayout = JSON.parse(JSON.stringify(widgetLayout));
     initResizeHandles();
     updateUI();
 }
 
-async function applyLayout() {
+export async function applyLayout() {
     await saveLayout();
     isEditMode = false;
     updateUI();
 }
 
-function cancelLayout() {
+export function cancelLayout() {
     widgetLayout = JSON.parse(JSON.stringify(originalLayout));
     applyWidgetData();
     isEditMode = false;

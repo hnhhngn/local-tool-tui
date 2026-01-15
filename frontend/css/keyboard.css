@@ -1,0 +1,371 @@
+/**
+ * TUI-KEYBOARD / keyboard.css
+ * Styling for keyboard navigation components
+ * Uses CSS variables for easy theming
+ */
+
+/* === CSS Variables (can be overridden) === */
+:root {
+  --tui-kb-focus-color: var(--tui-text-keyword, oklch(70.51% 0.183 343.83));
+  --tui-kb-selected-bg: var(--tui-bg-hover, oklch(25.56% 0.105 294.24));
+  --tui-kb-overlay-bg: rgba(0, 0, 0, 0.7);
+  --tui-kb-panel-bg: var(--tui-bg-panel, oklch(17.08% 0.058 297.53));
+  --tui-kb-border: var(--tui-border, oklch(46.36% 0.214 293.04));
+  --tui-kb-text: var(--tui-text-main, oklch(94.64% 0.022 302.93));
+  --tui-kb-text-dim: var(--tui-text-dim, oklch(77.6% 0.097 300.59));
+  --tui-kb-accent: var(--tui-accent-cyan, oklch(78.9% 0.154 211.53));
+}
+
+/* === Overlay Base === */
+.tui-kb-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--tui-kb-overlay-bg);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 15vh;
+  z-index: 9999;
+  /* backdrop-filter: blur(4px); */
+}
+
+.tui-kb-overlay.hidden {
+  display: none !important;
+}
+
+/* === Focus Indicator === */
+.tui-kb-focused {
+  border-color: var(--tui-kb-focus-color) !important;
+  box-shadow: 0 0 0 2px var(--tui-kb-focus-color),
+    0 0 20px color-mix(in srgb, var(--tui-kb-focus-color), transparent 60%) !important;
+}
+
+/* === Selected Item === */
+.tui-kb-selected {
+  background: var(--tui-kb-selected-bg) !important;
+  box-shadow: inset 4px 0 0 var(--tui-kb-accent);
+}
+
+/* ============================================
+   COMMAND PALETTE
+   ============================================ */
+
+.tui-kb-palette {
+  background: var(--tui-kb-panel-bg);
+  border: 4px solid var(--tui-kb-border);
+  width: min(600px, 90vw);
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--tui-kb-border), transparent 50%),
+    0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.tui-kb-palette-header {
+  padding: var(--space-3, 0.75rem);
+  border-bottom: 2px dashed var(--tui-kb-border);
+}
+
+.tui-kb-palette-input {
+  width: 100%;
+  background: var(--tui-bg-input, #1a1a1a);
+  border: 2px solid var(--tui-kb-border);
+  color: var(--tui-kb-text);
+  font-family: var(--font-body, monospace);
+  font-size: var(--text-base, 1rem);
+  padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
+  caret-color: var(--tui-kb-focus-color);
+  outline: none;
+}
+
+.tui-kb-palette-input:focus {
+  border-color: var(--tui-kb-focus-color);
+}
+
+.tui-kb-palette-input::placeholder {
+  color: var(--tui-kb-text-dim);
+  opacity: 0.6;
+}
+
+.tui-kb-palette-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-2, 0.5rem) 0;
+}
+
+.tui-kb-palette-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 0.75rem);
+  padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.tui-kb-palette-item:hover {
+  background: var(--tui-kb-selected-bg);
+}
+
+.tui-kb-palette-item.tui-kb-selected {
+  background: var(--tui-kb-selected-bg);
+}
+
+.tui-kb-palette-category {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--tui-kb-accent);
+  text-transform: uppercase;
+  min-width: 80px;
+}
+
+.tui-kb-palette-name {
+  flex: 1;
+  color: var(--tui-kb-text);
+}
+
+.tui-kb-palette-shortcut {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--tui-kb-text-dim);
+  background: color-mix(in srgb, var(--tui-kb-border), transparent 70%);
+  padding: 2px 6px;
+  border: 1px solid var(--tui-kb-border);
+}
+
+.tui-kb-palette-empty {
+  padding: var(--space-4, 1rem);
+  text-align: center;
+  color: var(--tui-kb-text-dim);
+}
+
+/* ============================================
+   CHEAT SHEET
+   ============================================ */
+
+.tui-kb-cheatsheet {
+  background: var(--tui-kb-panel-bg);
+  border: 4px solid var(--tui-kb-border);
+  width: min(1024px, 95vw);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--tui-kb-border), transparent 50%),
+    0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.tui-kb-cheatsheet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+  border-bottom: 2px dashed var(--tui-kb-border);
+}
+
+.tui-kb-cheatsheet-title {
+  color: var(--tui-kb-focus-color);
+  font-family: var(--font-header, monospace);
+  font-size: var(--text-lg, 1.125rem);
+}
+
+.tui-kb-cheatsheet-close {
+  background: none;
+  border: none;
+  color: var(--tui-accent-rose, #f0f);
+  font-family: var(--font-body, monospace);
+  font-size: var(--text-base, 1rem);
+  cursor: pointer;
+  padding: var(--space-1, 0.25rem);
+  transition: color 0.15s ease;
+}
+
+.tui-kb-cheatsheet-close:hover {
+  color: var(--tui-kb-text);
+}
+
+.tui-kb-cheatsheet-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4, 1rem);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4, 1rem);
+}
+
+.tui-kb-cheatsheet-group {
+  background: color-mix(in srgb, var(--tui-kb-panel-bg), black 20%);
+  border: 2px solid var(--tui-kb-border);
+  padding: var(--space-3, 0.75rem);
+}
+
+.tui-kb-cheatsheet-group-title {
+  color: var(--tui-kb-accent);
+  font-size: var(--text-sm, 0.875rem);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2, 0.5rem);
+  padding-bottom: var(--space-2, 0.5rem);
+  border-bottom: 1px dashed var(--tui-kb-border);
+}
+
+.tui-kb-cheatsheet-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 0.5rem);
+}
+
+.tui-kb-cheatsheet-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 0.75rem);
+}
+
+.tui-kb-key {
+  display: inline-block;
+  min-width: 60px;
+  background: var(--tui-bg-input, #1a1a1a);
+  border: 2px solid var(--tui-kb-border);
+  color: var(--tui-kb-focus-color);
+  font-family: var(--font-body, monospace);
+  font-size: var(--text-xs, 0.75rem);
+  padding: 2px 8px;
+  text-align: center;
+}
+
+.tui-kb-action {
+  color: var(--tui-kb-text-dim);
+  font-size: var(--text-sm, 0.875rem);
+}
+
+/* ============================================
+   CUSTOM MAPPING SECTION
+   ============================================ */
+
+.tui-kb-custom-section {
+  /* Remove full width, let it be 1 column like others */
+  border-color: var(--tui-kb-focus-color);
+}
+
+.tui-kb-custom-empty {
+  color: var(--tui-kb-text-dim);
+  font-style: italic;
+  padding: var(--space-2, 0.5rem) 0;
+}
+
+.tui-kb-custom-item {
+  position: relative;
+}
+
+.tui-kb-custom-add {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  margin-bottom: var(--space-3, 0.75rem);
+  padding-bottom: var(--space-3, 0.75rem);
+  border-bottom: 1px dashed var(--tui-kb-border);
+}
+
+.tui-kb-key-capture {
+  width: 120px;
+  background: var(--tui-bg-input, #1a1a1a);
+  border: 2px solid var(--tui-kb-border);
+  color: var(--tui-kb-focus-color);
+  font-family: var(--font-body, monospace);
+  font-size: var(--text-xs, 0.75rem);
+  padding: 4px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.tui-kb-key-capture:focus {
+  border-color: var(--tui-kb-focus-color);
+  outline: none;
+}
+
+.tui-kb-key-capture::placeholder {
+  color: var(--tui-kb-text-dim);
+  opacity: 0.7;
+}
+
+.tui-kb-arrow {
+  color: var(--tui-kb-text-dim);
+}
+
+.tui-kb-action-select {
+  flex: 1;
+  background: var(--tui-bg-input, #1a1a1a);
+  border: 2px solid var(--tui-kb-border);
+  color: var(--tui-kb-text);
+  font-family: var(--font-body, monospace);
+  font-size: var(--text-xs, 0.75rem);
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.tui-kb-action-select:focus {
+  border-color: var(--tui-kb-focus-color);
+  outline: none;
+}
+
+.tui-kb-add-btn,
+.tui-kb-remove-btn {
+  background: none;
+  border: 2px solid var(--tui-kb-border);
+  color: var(--tui-kb-accent);
+  font-family: var(--font-body, monospace);
+  font-size: var(--text-sm, 0.875rem);
+  padding: 2px 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tui-kb-add-btn:hover {
+  background: var(--tui-kb-accent);
+  color: var(--tui-kb-panel-bg);
+}
+
+.tui-kb-remove-btn {
+  color: var(--tui-accent-rose, #f06);
+  border-color: transparent;
+  padding: 0 4px;
+  margin-left: auto;
+}
+
+.tui-kb-remove-btn:hover {
+  color: var(--tui-kb-text);
+}
+
+/* Remap button */
+.tui-kb-remap-btn {
+  background: none;
+  border: none;
+  color: var(--tui-kb-text-dim);
+  font-family: var(--font-body, monospace);
+  font-size: var(--text-xs, 0.75rem);
+  padding: 0 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  margin-left: auto;
+}
+
+.tui-kb-cheatsheet-item:hover .tui-kb-remap-btn {
+  opacity: 1;
+}
+
+.tui-kb-remap-btn:hover {
+  color: var(--tui-kb-accent);
+}
+
+/* Remap input inline */
+.tui-kb-remap-input {
+  width: 100px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    border-color: var(--tui-kb-focus-color);
+  }
+  50% {
+    border-color: var(--tui-kb-accent);
+  }
+}

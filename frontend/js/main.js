@@ -7,8 +7,9 @@ import { fetchTasks, openAddTaskModal } from './modules/tasks.js';
 import { fetchLinks, openAddLinkModal } from './modules/links.js';
 import { fetchReminders, openAddReminderModal } from './modules/reminders.js';
 import { fetchAutomation, openAddAutomationModal } from './modules/automation.js';
-import { initLayout } from './modules/layout.js';
-import { initTheme } from './modules/themeManager.js';
+import { initLayout, toggleEditMode, applyLayout, cancelLayout } from './modules/layout.js';
+import { initTheme, setTheme } from './modules/themeManager.js';
+import { TUIKeyboard } from './lib/tui-keyboard/index.js';
 
 console.log("🚀 Local TUI Dev Tool Started");
 console.log("🎨 Theme: Jules Google (Hybrid)");
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     initTheme(); // Multi-theme system
     initWidgetButtons();
     initLayout(); // Drag & Drop
+    initKeyboard(); // Keyboard navigation
 
     // Load Tasks
     try {
@@ -99,4 +101,82 @@ function initWidgetButtons() {
             });
         }
     }
+}
+
+/**
+ * Initialize TUIKeyboard
+ * App-specific configuration and event handlers
+ */
+function initKeyboard() {
+    TUIKeyboard.init({
+        // Register panels for focus navigation
+        panels: [
+            '#widget-tasks',
+            '#widget-links',
+            '#widget-reminders',
+            '#widget-automation'
+        ],
+
+        // Register commands for Command Palette (VS Code style: Category: Action)
+        commands: [
+            // Task commands
+            { id: 'task:new', name: 'Task: New', category: 'Task', handler: openAddTaskModal },
+
+            // Link commands
+            { id: 'link:new', name: 'Link: New', category: 'Link', handler: () => openAddLinkModal('grp-1') },
+
+            // Reminder commands
+            { id: 'reminder:new', name: 'Reminder: New', category: 'Reminder', handler: openAddReminderModal },
+
+            // Automation commands
+            { id: 'automation:new', name: 'Automation: New', category: 'Automation', handler: openAddAutomationModal },
+
+            // Layout commands
+            { id: 'layout:edit', name: 'Layout: Edit Mode', category: 'Layout', handler: toggleEditMode },
+            { id: 'layout:apply', name: 'Layout: Apply Changes', category: 'Layout', handler: applyLayout },
+            { id: 'layout:cancel', name: 'Layout: Cancel Changes', category: 'Layout', handler: cancelLayout },
+
+            // Theme commands
+            { id: 'theme:dark', name: 'Theme: Dark', category: 'Theme', handler: () => setTheme('dark') },
+            { id: 'theme:light', name: 'Theme: Light', category: 'Theme', handler: () => setTheme('light') },
+            { id: 'theme:colorful', name: 'Theme: Colorful', category: 'Theme', handler: () => setTheme('colorful') },
+
+            // Navigation commands
+            { id: 'goto:tasks', name: 'Go to: Tasks', category: 'Navigation', shortcut: '1', handler: () => TUIKeyboard.focusPanel(0) },
+            { id: 'goto:links', name: 'Go to: Links', category: 'Navigation', shortcut: '2', handler: () => TUIKeyboard.focusPanel(1) },
+            { id: 'goto:reminders', name: 'Go to: Reminders', category: 'Navigation', shortcut: '3', handler: () => TUIKeyboard.focusPanel(2) },
+            { id: 'goto:automation', name: 'Go to: Automation', category: 'Navigation', shortcut: '4', handler: () => TUIKeyboard.focusPanel(3) },
+
+            // Help/Settings commands
+            { id: 'help:shortcuts', name: 'Help: Keyboard Shortcuts', category: 'Help', shortcut: '?', handler: () => TUIKeyboard.openCheatSheet() },
+        ],
+
+        // Focus system config
+        focus: {
+            panelSelector: '.widget-panel',
+            listSelector: '.editor-body',
+            itemSelector: '.tui-tree-node, .link-item, .reminder-item, .automation-item',
+            focusClass: 'tui-kb-focused',
+            selectedClass: 'tui-kb-selected'
+        }
+    });
+
+    // Listen for item selection events
+    TUIKeyboard.on('item:selected', ({ item, itemId }) => {
+        // Trigger click on the item to open it
+        if (item) {
+            const clickable = item.querySelector('[data-action="select"]') || item;
+            clickable.click();
+        }
+    });
+
+    // Listen for item toggle events (expand/collapse)
+    TUIKeyboard.on('item:toggled', ({ item, itemId }) => {
+        if (item) {
+            const toggle = item.querySelector('[data-action="toggle"]');
+            if (toggle) toggle.click();
+        }
+    });
+
+    console.log("⌨️ TUIKeyboard initialized");
 }

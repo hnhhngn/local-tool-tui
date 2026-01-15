@@ -32,6 +32,9 @@ export function applyTheme(theme) {
     console.log(`🎨 Theme: ${theme}`);
 }
 
+// Alias for command palette
+export const setTheme = applyTheme;
+
 /**
  * Cập nhật UI dropdown
  */
